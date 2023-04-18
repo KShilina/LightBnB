@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-const database = require("../db/database");
+// const properties = require("../db/properties");
+const userQueries = require("../db/user");
 
 const router = express.Router();
 
@@ -8,7 +9,7 @@ const router = express.Router();
 router.post("/", (req, res) => {
   const user = req.body;
   user.password = bcrypt.hashSync(user.password, 12);
-  database
+  userQueries
     .addUser(user)
     .then((user) => {
       if (!user) {
@@ -26,7 +27,7 @@ router.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  database.getUserWithEmail(email).then((user) => {
+  userQueries.getUserWithEmail(email).then((user) => {
     if (!user) {
       return res.send({ error: "no user with that id" });
     }
@@ -59,7 +60,7 @@ router.get("/me", (req, res) => {
     return res.send({ message: "not logged in" });
   }
 
-  database
+  userQueries
     .getUserWithId(userId)
     .then((user) => {
       if (!user) {

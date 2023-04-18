@@ -1,71 +1,6 @@
-const { Pool } = require("pg");
-
-const pool = new Pool({
-  user: "vagrant",
-  password: "123",
-  host: "localhost",
-  database: "lightbnb",
-});
-
-const properties = require("./json/properties.json");
-const users = require("./json/users.json");
-
-/// Users
-
-/**
- * Get a single user from the database given their email.
-//  *@param {String} email The email of the user.
-//  * @return {Promise<{}>} A promise to the user.
- */
-const getUserWithEmail = function (email) {
-  return pool
-    .query(`SELECT * FROM users WHERE email = $1;`, [email])
-    .then((res) => {
-      console.log(res.rows);
-      if (!res.rows[0]) {
-        return null;
-      }
-      return res.rows[0];
-    });
-  // .catch((error) => {
-  //   console.log(error.message);
-  // })
-};
-
-/**
- * Get a single user from the database given their id.
- * @param {string} id The id of the user.
- * @return {Promise<{}>} A promise to the user.
- */
-const getUserWithId = function (id) {
-  return pool.query(`SELECT * FROM users WHERE id = $1;`, [id]).then((res) => {
-    console.log(res.rows);
-    if (!res.rows[0]) {
-      return null;
-    }
-    return res.rows[0];
-  });
-  // .catch((error) => {
-  //   console.log(error.message);
-  // })
-};
-
-/**
- * Add a new user to the database.
- * @param {{name: string, password: string, email: string}} user
- * @return {Promise<{}>} A promise to the user.
- */
-
-const addUser = function (user) {
-  return pool
-    .query(
-      "INSERT INTO users (name, email, password) VALUES($1, $2, $3) RETURNING *",
-      [user.name, user.email, user.password]
-    )
-    .then((res) => {
-      console.log(res.rows);
-    });
-};
+const pool  = require("./index");
+// const properties = require("./json/properties.json");
+// const users = require("./json/users.json");
 
 /// Reservations
 
@@ -120,7 +55,7 @@ const getAllProperties = function (options, limit = 10) {
 
   if (options.owner_id) {
     queryParams.push(`${options.owner_id}`);
-    queryString += `AND id = $${queryParams.length} `;
+    queryString += `AND owner_id = $${queryParams.length} `;
   }
 
   if (options.minimum_price_per_night) {
@@ -171,7 +106,6 @@ const addProperty = function (property) {
         property.thumbnail_photo_url,
         property.cover_photo_url,
         property.cost_per_night,
-        property.cost_per_night,
         property.street,
         property.city,
         property.province,
@@ -184,13 +118,16 @@ const addProperty = function (property) {
     )
     .then((res) => {
       console.log(res.rows[0]);
-    });
+    })
+    .catch((err)=> {
+      console.log(err);
+    })
 };
 
 module.exports = {
-  getUserWithEmail,
-  getUserWithId,
-  addUser,
+  // getUserWithEmail,
+  // getUserWithId,
+  // addUser,
   getAllReservations,
   getAllProperties,
   addProperty,
