@@ -1,6 +1,4 @@
-const pool  = require("./index");
-// const properties = require("./json/properties.json");
-// const users = require("./json/users.json");
+const pool = require("./index");
 
 /// Reservations
 
@@ -93,7 +91,7 @@ const getAllProperties = function (options, limit = 10) {
  * Add a property to the database
  * @param {{}} property An object containing all of the property details.
  * @return {Promise<{}>} A promise to the property.
- */ 
+ */
 
 const addProperty = function (property) {
   return pool
@@ -119,15 +117,12 @@ const addProperty = function (property) {
     .then((res) => {
       console.log(res.rows[0]);
     })
-    .catch((err)=> {
+    .catch((err) => {
       console.log(err);
-    })
+    });
 };
 
 module.exports = {
-  // getUserWithEmail,
-  // getUserWithId,
-  // addUser,
   getAllReservations,
   getAllProperties,
   addProperty,

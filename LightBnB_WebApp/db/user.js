@@ -1,4 +1,5 @@
-const pool  = require("./index");
+const pool = require("./index");
+
 /// Users
 
 /**
@@ -16,9 +17,6 @@ const getUserWithEmail = function (email) {
       }
       return res.rows[0];
     });
-  // .catch((error) => {
-  //   console.log(error.message);
-  // })
 };
 
 /**
@@ -34,9 +32,6 @@ const getUserWithId = function (id) {
     }
     return res.rows[0];
   });
-  // .catch((error) => {
-  //   console.log(error.message);
-  // })
 };
 
 /**
@@ -60,4 +55,4 @@ module.exports = {
   getUserWithEmail,
   addUser,
   getUserWithId,
-}
+};
