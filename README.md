@@ -105,3 +105,6 @@ The purpose of this project is to design a database and use server-side JavaScri
 
 ## Screenshot of Application
 !["Screenshot of application"](docs/lightBnB.png)
+## Demo
+
+![Demo](docs/demo.gif)
