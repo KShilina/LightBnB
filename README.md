@@ -1,5 +1,5 @@
 # LightBnB
-A clone of AirBnB that uses server-side JavaScript to display the information from queires to web pages via SQL queries.
+A simple multi-page AirBnB clone that uses server-side JavaScript to display the information from queires to web pages via SQL queries.
 ## Purpose
 The purpose of this project is to design a database and use server-side JavaScript to display the information from queries to web pages. As well as apply knowledge of complex SQL queries, database and ERD (entity relationship diagram) design to integrate the database with a Node backend.
 
