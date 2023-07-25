@@ -35,6 +35,7 @@ The purpose of this project is to design a database and use server-side JavaScri
 ## Dependencies
 
 - `Express` Web framework for Node.js `npm i express`
+- `node` Version `nvm use 15.14.0`
 - `pg` PostgreSQL client for Node.js `npm i pg`
 - `bcrypt` The library to hash passwords `npm i bcrypt`
 - `cookie-session` Cookie - based session middleware `npm i cookie-session`
